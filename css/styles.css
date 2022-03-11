@@ -1,0 +1,31 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+}
+
+#hovered-color {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 150px;
+	background-color: white;
+}
+
+/************ Large **************/
+@media (min-width: 1200px) {
+}
+
+/************ Medium **************/
+@media (min-width: 992px) and (max-width: 1199px) {
+}
+
+/************ Small **************/
+@media (min-width: 768px) and (max-width: 991px) {
+}
+
+/************ Extra-small **************/
+@media (max-width: 767px) {
+}
