@@ -4,6 +4,14 @@ var context = canvas.getContext('2d');
 var map = new Image();
 map.crossOrigin = 'anonymous';
 map.src = 'map/provinces.bmp';
+var mapDef;
+
+map.onload = function() {
+	context.drawImage(map, 0, 0);
+	mapDef = context.getImageData(0, 0, canvas.width, canvas.height).data;
+
+	cede(1, country.color);
+}
 
 var hoveredColor = document.getElementById('hovered-color');
 var selectedColor = document.getElementById('selected-color');
@@ -33,14 +41,13 @@ var country = {
 }
 
 function cede(provId, tag) {
-	context.drawImage(map, 0, 0);
 	const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 	const data = imageData.data;
 
 	[red, green, blue] = getProvince(provId).color;
 
-	for (var i = 0; i < data.length; i += 4) {
-		if (data[i] == red && data[i + 1] == green && data[i + 2] == blue)
+	for (var i = 0; i < mapDef.length; i += 4) {
+		if (mapDef[i] == red && mapDef[i + 1] == green && mapDef[i + 2] == blue)
 		{
 			data[i] = tag[0];
 			data[i + 1] = tag[1];
@@ -49,5 +56,3 @@ function cede(provId, tag) {
 	}
 	context.putImageData(imageData, 0, 0);
 }
-
-cede(1, country.color);
