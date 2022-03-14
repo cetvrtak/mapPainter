@@ -10,7 +10,7 @@ map.onload = function() {
 	context.drawImage(map, 0, 0);
 	mapDef = context.getImageData(0, 0, canvas.width, canvas.height).data;
 
-	cede(1, country.color);
+	cede(1, "ENG");
 }
 
 var hoveredColor = document.getElementById('hovered-color');
@@ -36,22 +36,19 @@ canvas.addEventListener('click', function(event) {
 	pick(event, selectedColor);
 });
 
-var country = {
-	color: [0,0,0]
-}
-
 function cede(provId, tag) {
 	const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 	const data = imageData.data;
 
 	[red, green, blue] = getProvince(provId).color;
+	var countryColor = getCountry(tag).color;
 
 	for (var i = 0; i < mapDef.length; i += 4) {
 		if (mapDef[i] == red && mapDef[i + 1] == green && mapDef[i + 2] == blue)
 		{
-			data[i] = tag[0];
-			data[i + 1] = tag[1];
-			data[i + 2] = tag[2];
+			data[i] = countryColor[0];
+			data[i + 1] = countryColor[1];
+			data[i + 2] = countryColor[2];
 		}
 	}
 	context.putImageData(imageData, 0, 0);
