@@ -1,8 +1,8 @@
-function getProvince(id) {
+function getProvince(attr) {
 	var province;
 
 	provinceDefinitions.find(function(p) {
-		if (p.id == id)
+		if (p.id == attr || p.color.every((x, i) => x == attr[i]) || p.name == attr)
 		{
 			province = p;
 		}
