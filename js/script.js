@@ -53,3 +53,31 @@ function cede(provId, tag) {
 	}
 	context.putImageData(imageData, 0, 0);
 }
+
+function paintTheMap() {
+	const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+	const data = imageData.data;
+
+	for (var i = 0; i < mapDef.length; i += 4) {
+		var province = getProvince([mapDef[i], mapDef[i + 1], mapDef[i + 2]]);
+		if (province.sea)
+		{
+			data[i] = 0;
+			data[i + 1] = 0;
+			data[i + 2] = 255;
+			continue;
+		}
+		if (province["1836.1.1"] == "")
+		{
+			data[i] = 255;
+			data[i + 1] = 255;
+			data[i + 2] = 255;
+			continue;
+		}
+		var ownerColor = getCountry(province["1836.1.1"]).color;
+		data[i] = ownerColor[0];
+		data[i + 1] = ownerColor[1];
+		data[i + 2] = ownerColor[2];
+	}
+	context.putImageData(imageData, 0, 0);
+}
