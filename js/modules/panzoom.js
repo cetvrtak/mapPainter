@@ -1,6 +1,6 @@
 // Source: https://gist.github.com/dzhang123/2a3a611b3d75a45a3f41
 
-window.onload = function(){		
+export function applyPanZoom(canvas, context, mapInit) {		
 	trackTransforms(context);
 
 	function redraw(){

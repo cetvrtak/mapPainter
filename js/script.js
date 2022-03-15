@@ -1,3 +1,11 @@
+import { getProvince } from './modules/province_definitions.js';
+import { getCountry } from './modules/country_definitions.js';
+import { applyPanZoom } from './modules/panzoom.js';
+
+window.onload = function() {
+	applyPanZoom(canvas, context, mapInit);
+}
+
 var canvas = document.getElementById('provinceMap');
 var context = canvas.getContext('2d');
 context.canvas.width  = window.innerWidth - 1;

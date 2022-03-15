@@ -1,4 +1,4 @@
-function getProvince(attr) {
+export function getProvince(attr) {
 	var province;
 
 	provinceDefinitions.find(function(p) {

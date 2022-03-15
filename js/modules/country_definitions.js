@@ -1,4 +1,4 @@
-function getCountry(attr) {
+export function getCountry(attr) {
 	var country;
 
 	countryDefinitions.find(function(c) {
