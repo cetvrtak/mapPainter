@@ -35,8 +35,12 @@ function pick(event, destination) {
 	var pixel = context.getImageData(x, y, 1, 1);
 	var data = pixel.data;
 
-	const rgb = `rgb(${data[0]}, ${data[1]}, ${data[2]})`;
-	destination.textContent = rgb;
+	const rgb = [data[0], data[1], data[2]];
+	destination.textContent = `rgb(` + rgb + `)`;
+	if (getCountry(rgb) != undefined)
+	{
+		destination.textContent += "\nowner: " + getCountry(rgb).tag;
+	}
 
 	return rgb;
 }
