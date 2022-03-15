@@ -1,5 +1,7 @@
 var canvas = document.getElementById('provinceMap');
 var context = canvas.getContext('2d');
+context.canvas.width  = window.innerWidth - 1;
+context.canvas.height = window.innerHeight * 0.75;
 
 var map = new Image();
 map.crossOrigin = 'anonymous';
@@ -12,11 +14,10 @@ map.onload = function() {
 	initializeMap("1836.1.1");
 }
 
+var mapInit = new Image();
+mapInit.crossOrigin = 'anonymous';
+mapInit.src = 'map/map_initial.png';
 function initializeMap(date) {
-	var mapInit = new Image();
-	mapInit.crossOrigin = 'anonymous';
-	mapInit.src = 'map/map_initial.png';
-
 	mapInit.onload = function() {
 		context.drawImage(mapInit, 0, 0);
 
