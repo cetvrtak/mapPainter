@@ -10,7 +10,19 @@ map.onload = function() {
 	context.drawImage(map, 0, 0);
 	mapDef = context.getImageData(0, 0, canvas.width, canvas.height).data;
 
-	cede(1, "ENG");
+	for (var province of provinceDefinitions)
+	{
+		if (province.sea)
+		{
+			continue;
+		}
+		if (province["1836.1.1"] == "")
+		{
+			cede(province.id, "---");
+			continue;
+		}
+		cede(province.id, province["1836.1.1"]);
+	}
 }
 
 var hoveredColor = document.getElementById('hovered-color');
