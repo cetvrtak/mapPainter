@@ -9,19 +9,35 @@ var mapDef;
 map.onload = function() {
 	context.drawImage(map, 0, 0);
 	mapDef = context.getImageData(0, 0, canvas.width, canvas.height).data;
+	initializeMap("1836.1.1");
+}
 
-	for (var province of provinceDefinitions)
-	{
-		if (province.sea)
+function initializeMap(date) {
+	var mapInit = new Image();
+	mapInit.crossOrigin = 'anonymous';
+	mapInit.src = 'map/map_initial.png';
+
+	mapInit.onload = function() {
+		context.drawImage(mapInit, 0, 0);
+
+		for (var province of provinceDefinitions)
 		{
-			continue;
+			console.log(province);
+			if (province.id == 1)
+			{
+				break;
+			}
+			if (province.sea)
+			{
+				continue;
+			}
+			if (province[date] == "")
+			{
+				cede(province.id, "---");
+				continue;
+			}
+			cede(province.id, province[date]);
 		}
-		if (province["1836.1.1"] == "")
-		{
-			cede(province.id, "---");
-			continue;
-		}
-		cede(province.id, province["1836.1.1"]);
 	}
 }
 
