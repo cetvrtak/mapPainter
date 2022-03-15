@@ -6,11 +6,16 @@ html {
 body {
 }
 
+.map-window {
+	position: relative;
+}
+
 #hovered-color {
-	position: fixed;
+	position: absolute;
 	left: 0;
 	bottom: 0;
 	width: 150px;
+	margin-bottom: 0px;
 	background-color: white;
 }
 

@@ -8,10 +8,12 @@
 	<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-	<div align="center" class="color-cell" id="hovered-color">rgb(0, 0, 0)</div>
 	<div align="center" class="color-cell" id="selected-color">Selected:</div>
 
-	<canvas id="provinceMap" width="5616" height="2160"></canvas>
+	<div class="map-window">
+		<canvas id="provinceMap" width="5616" height="2160"></canvas>
+		<pre id="hovered-color">rgb(0, 0, 0)</pre>
+	</div>
 	<script type="module" src="js/script.js"></script>
 </body>
 </html>
