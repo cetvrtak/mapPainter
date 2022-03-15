@@ -86,6 +86,22 @@ function cede(provId, tag) {
 	context.putImageData(imageData, 0, 0);
 }
 
+function getProvinceOwner(provId) {
+	const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+	const data = imageData.data;
+
+	var colorCode = getProvince(provId).color;
+	var ownerColor;
+	for (var i = 0; i < mapDef.length; i += 4) {
+		if (mapDef[i] == colorCode[0] && mapDef[i + 1] == colorCode[1] && mapDef[i + 2] == colorCode[2])
+		{
+			ownerColor = [data[i], data[i + 1], data[i + 2]];
+			break;
+		}
+	}
+	return getCountry(ownerColor).tag;
+}
+
 function paintTheMap() {
 	const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 	const data = imageData.data;
