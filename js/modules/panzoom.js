@@ -15,7 +15,7 @@ export function applyPanZoom(canvas, context, mapInit) {
 		context.clearRect(0,0,canvas.width,canvas.height);
 		context.restore();
 
-		context.drawImage(mapInit,0,0);
+		context.drawImage(mapInit,0,0,canvas.width,canvas.height);
 
 	}
 	redraw();

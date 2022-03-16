@@ -17,7 +17,7 @@ map.src = 'map/provinces.bmp';
 var mapDef;
 
 map.onload = function() {
-	context.drawImage(map, 0, 0);
+	context.drawImage(map, 0, 0, canvas.width, canvas.height);
 	mapDef = context.getImageData(0, 0, canvas.width, canvas.height).data;
 	initializeMap("1836.1.1");
 }
@@ -27,7 +27,7 @@ mapInit.crossOrigin = 'anonymous';
 mapInit.src = 'map/map_initial.png';
 function initializeMap(date) {
 	mapInit.onload = function() {
-		context.drawImage(mapInit, 0, 0);
+		context.drawImage(mapInit, 0, 0, canvas.width, canvas.height);
 
 		for (var province of provinceDefinitions)
 		{
