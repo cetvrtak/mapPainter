@@ -45,7 +45,8 @@ export function applyPanZoom(canvas, context, mapInit) {
 
 	canvas.addEventListener('mouseup',function(evt){
 		dragStart = null;
-		if (!dragged) zoom(evt.shiftKey ? -1 : 1 );
+		// Zoom on click
+		// if (!dragged) zoom(evt.shiftKey ? -1 : 1 );
 	},false);
 
 	var scaleFactor = 1.1;
