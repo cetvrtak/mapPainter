@@ -1,4 +1,4 @@
-import { getProvince } from './modules/province_definitions.js';
+import { loadProvDef, provDef, getProvince } from './modules/province_definitions.js';
 import { getCountry } from './modules/country_definitions.js';
 import { applyPanZoom } from './modules/panzoom.js';
 
@@ -14,11 +14,9 @@ context.canvas.height = window.innerHeight * 0.75;
 var map = new Image();
 map.crossOrigin = 'anonymous';
 map.src = 'map/provinces.bmp';
-var mapDef;
 
 map.onload = function() {
-	context.drawImage(map, 0, 0, canvas.width, canvas.height);
-	mapDef = context.getImageData(0, 0, canvas.width, canvas.height).data;
+	loadProvDef(map, canvas, context);
 	initializeMap("1836.1.1");
 }
 
@@ -104,8 +102,8 @@ function cede(provId, tag) {
 	[red, green, blue] = getProvince(provId).color;
 	var countryColor = getCountry(tag).color;
 
-	for (var i = 0; i < mapDef.length; i += 4) {
-		if (mapDef[i] == red && mapDef[i + 1] == green && mapDef[i + 2] == blue)
+	for (var i = 0; i < provDef.length; i += 4) {
+		if (provDef[i] == red && provDef[i + 1] == green && provDef[i + 2] == blue)
 		{
 			data[i] = countryColor[0];
 			data[i + 1] = countryColor[1];
@@ -121,8 +119,8 @@ function getProvinceOwner(provId) {
 
 	var colorCode = getProvince(provId).color;
 	var ownerColor;
-	for (var i = 0; i < mapDef.length; i += 4) {
-		if (mapDef[i] == colorCode[0] && mapDef[i + 1] == colorCode[1] && mapDef[i + 2] == colorCode[2])
+	for (var i = 0; i < provDef.length; i += 4) {
+		if (provDef[i] == colorCode[0] && provDef[i + 1] == colorCode[1] && provDef[i + 2] == colorCode[2])
 		{
 			ownerColor = [data[i], data[i + 1], data[i + 2]];
 			break;
@@ -135,8 +133,8 @@ function paintTheMap() {
 	const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 	const data = imageData.data;
 
-	for (var i = 0; i < mapDef.length; i += 4) {
-		var province = getProvince([mapDef[i], mapDef[i + 1], mapDef[i + 2]]);
+	for (var i = 0; i < provDef.length; i += 4) {
+		var province = getProvince([provDef[i], provDef[i + 1], provDef[i + 2]]);
 		if (province.sea)
 		{
 			data[i] = 0;

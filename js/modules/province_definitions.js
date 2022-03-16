@@ -1,3 +1,9 @@
+export var provDef;
+export function loadProvDef(map, canvas, context) {
+	context.drawImage(map, 0, 0, canvas.width, canvas.height);
+	provDef = context.getImageData(0, 0, canvas.width, canvas.height).data;
+}
+
 export function getProvince(attr) {
 	var province;
 
