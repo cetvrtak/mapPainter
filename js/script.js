@@ -63,11 +63,11 @@ function pick(event) {
 
 	var province = getProvince(getDefPixel(x, y));
 
-	return [rgb, owner, province];
+	return [owner, province];
 }
 
 canvas.addEventListener('mousemove', function(event) {
-	var [rgb, owner, province] = pick(event);
+	var [owner, province] = pick(event);
 
 	var hoveredColor = document.getElementById('hovered-color');
 	if (province != undefined)
@@ -77,12 +77,11 @@ canvas.addEventListener('mousemove', function(event) {
 		if (owner != undefined)
 		{
 			hoveredColor.textContent += "\nOwner: " + owner;
-			hoveredColor.textContent += "\nrgb(" + rgb + ")";
 		}
 	}
 });
 canvas.addEventListener('click', function(event) {
-	var [rgb, owner, province] = pick(event);
+	var [owner, province] = pick(event);
 
 	var provinceView = document.getElementById('province-window');
 	provinceView.style.display = "block";
@@ -94,7 +93,7 @@ canvas.addEventListener('click', function(event) {
 		provinceData.textContent = "ID: " + province.id;
 		if (owner != undefined)
 		{
-			provinceData.textContent += "\nOwner: " + owner + " rgb(" + rgb + ")";
+			provinceData.textContent += "\nOwner: " + owner;
 		}
 		else
 		{
