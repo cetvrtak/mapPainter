@@ -50,34 +50,46 @@ function initializeMap(date) {
 	}
 }
 
-var hoveredColor = document.getElementById('hovered-color');
-var selectedColor = document.getElementById('selected-color');
-
-
-function pick(event, destination) {
+function pick(event) {
 	var x = event.layerX;
 	var y = event.layerY;
 	var pixel = context.getImageData(x, y, 1, 1);
 	var data = pixel.data;
 
 	const rgb = [data[0], data[1], data[2]];
-	destination.textContent = `rgb(` + rgb + `)`;
 	if (getCountry(rgb) != undefined)
 	{
-		destination.textContent += "\nowner: " + getCountry(rgb).tag;
+		var owner = getCountry(rgb).tag;
 	}
 
-	return rgb;
+	return [rgb, owner];
 }
 
 canvas.addEventListener('mousemove', function(event) {
-	pick(event, hoveredColor);
+	var [rgb, owner] = pick(event);
+
+	var hoveredColor = document.getElementById('hovered-color');
+	hoveredColor.textContent = "rgb(" + rgb + ")";
+	if (owner != undefined)
+	{
+		hoveredColor.textContent += "\nOwner: " + owner;
+	}
 });
 canvas.addEventListener('click', function(event) {
+	var [rgb, owner] = pick(event);
+
 	var provinceView = document.getElementById('province-window');
 	provinceView.style.display = "block";
 	var provinceData = document.getElementById('province-data');
-	pick(event, provinceData);
+	provinceData.textContent = "Color: rgb(" + rgb + ")";
+	if (owner != undefined)
+	{
+		provinceData.textContent += "\nOwner: " + owner;
+	}
+	else
+	{
+		provinceView.style.display = "none";
+	}
 
 	var provinceClose = document.getElementsByClassName('close')[0];
 	provinceClose.onclick = function() {
