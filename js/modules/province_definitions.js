@@ -1,5 +1,6 @@
 export var provDef;
 export function loadProvDef(map, canvas, context) {
+	context.imageSmoothingEnabled = false;
 	context.drawImage(map, 0, 0, canvas.width, canvas.height);
 	provDef = context.getImageData(0, 0, canvas.width, canvas.height).data;
 }

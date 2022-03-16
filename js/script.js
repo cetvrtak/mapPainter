@@ -25,6 +25,7 @@ mapInit.crossOrigin = 'anonymous';
 mapInit.src = 'map/map_initial.png';
 function initializeMap(date) {
 	mapInit.onload = function() {
+		context.imageSmoothingEnabled = false;
 		context.drawImage(mapInit, 0, 0, canvas.width, canvas.height);
 
 		for (var province of provinceDefinitions)
