@@ -1,8 +1,16 @@
 export var provDef;
 export function loadProvDef(map, canvas, context) {
+	_canvas = canvas;
 	context.imageSmoothingEnabled = false;
 	context.drawImage(map, 0, 0, canvas.width, canvas.height);
 	provDef = context.getImageData(0, 0, canvas.width, canvas.height).data;
+}
+
+var _canvas;
+export function getDefPixel(x, y) {
+	var pixelPos = y * (_canvas.width * 4) + x * 4;
+	var pixelColor = [provDef[pixelPos], provDef[pixelPos + 1], provDef[pixelPos + 2]];
+	return pixelColor;
 }
 
 export function getProvince(attr) {

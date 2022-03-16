@@ -1,4 +1,4 @@
-import { loadProvDef, provDef, getProvince } from './modules/province_definitions.js';
+import { loadProvDef, provDef, getDefPixel, getProvince } from './modules/province_definitions.js';
 import { getCountry } from './modules/country_definitions.js';
 import { applyPanZoom } from './modules/panzoom.js';
 
@@ -61,33 +61,45 @@ function pick(event) {
 		var owner = getCountry(rgb).tag;
 	}
 
-	return [rgb, owner];
+	var province = getProvince(getDefPixel(x, y));
+
+	return [rgb, owner, province];
 }
 
 canvas.addEventListener('mousemove', function(event) {
-	var [rgb, owner] = pick(event);
+	var [rgb, owner, province] = pick(event);
 
 	var hoveredColor = document.getElementById('hovered-color');
-	hoveredColor.textContent = "rgb(" + rgb + ")";
-	if (owner != undefined)
+	if (province != undefined)
 	{
-		hoveredColor.textContent += "\nOwner: " + owner;
+		hoveredColor.textContent = province.name;
+		hoveredColor.textContent += "\nID: " + province.id;
+		if (owner != undefined)
+		{
+			hoveredColor.textContent += "\nOwner: " + owner;
+			hoveredColor.textContent += "\nrgb(" + rgb + ")";
+		}
 	}
 });
 canvas.addEventListener('click', function(event) {
-	var [rgb, owner] = pick(event);
+	var [rgb, owner, province] = pick(event);
 
 	var provinceView = document.getElementById('province-window');
 	provinceView.style.display = "block";
-	var provinceData = document.getElementById('province-data');
-	provinceData.textContent = "Color: rgb(" + rgb + ")";
-	if (owner != undefined)
+	if (province != undefined)
 	{
-		provinceData.textContent += "\nOwner: " + owner;
-	}
-	else
-	{
-		provinceView.style.display = "none";
+		var provinceName = document.getElementById('province-name');
+		provinceName.textContent = province.name;
+		var provinceData = document.getElementById('province-data');
+		provinceData.textContent = "ID: " + province.id;
+		if (owner != undefined)
+		{
+			provinceData.textContent += "\nOwner: " + owner + " rgb(" + rgb + ")";
+		}
+		else
+		{
+			provinceView.style.display = "none";
+		}
 	}
 
 	var provinceClose = document.getElementsByClassName('close')[0];
