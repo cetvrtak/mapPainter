@@ -74,7 +74,15 @@ canvas.addEventListener('mousemove', function(event) {
 	pick(event, hoveredColor);
 });
 canvas.addEventListener('click', function(event) {
-	pick(event, selectedColor);
+	var provinceView = document.getElementById('province-window');
+	provinceView.style.display = "block";
+	var provinceData = document.getElementById('province-data');
+	pick(event, provinceData);
+
+	var provinceClose = document.getElementsByClassName('close')[0];
+	provinceClose.onclick = function() {
+		provinceView.style.display = "none";
+	}
 });
 
 function cede(provId, tag) {

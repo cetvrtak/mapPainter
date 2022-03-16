@@ -8,11 +8,19 @@
 	<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-	<div align="center" class="color-cell" id="selected-color">Selected:</div>
 
 	<div class="map-window">
 		<canvas id="provinceMap" width="5616" height="2160"></canvas>
 		<pre id="hovered-color">rgb(0, 0, 0)</pre>
+
+		<div id="province-window" class="container">
+			<div id="province-header">
+				<span>Province Header</span>
+				<span class="close">&times;</span>
+			</div>
+			<pre id="province-data">Province Data</pre>
+		</div>
+
 	</div>
 	<script type="module" src="js/script.js"></script>
 </body>

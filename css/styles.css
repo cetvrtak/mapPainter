@@ -19,6 +19,29 @@ body {
 	background-color: white;
 }
 
+#province-window {
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 250px;
+	height: 500px;
+	background-color: white;
+	border: 1px solid black;
+}
+
+#province-header {
+
+}
+
+.close {
+	float: right;
+}
+
+#province-data {
+
+}
+
 /************ Large **************/
 @media (min-width: 1200px) {
 }
