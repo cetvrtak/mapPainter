@@ -1,9 +1,9 @@
 import { loadProvDef, provDef, getDefPixel, getProvince } from './modules/province_definitions.js';
 import { getCountry } from './modules/country_definitions.js';
-import { applyPanZoom } from './modules/panzoom.js';
+import { applyPanZoom, mapDef } from './modules/panzoom.js';
 
 window.onload = function() {
-	applyPanZoom(canvas, context, mapInit);
+	applyPanZoom(canvas, context, mapInit, map);
 }
 
 var canvas = document.getElementById('provinceMap');
@@ -61,7 +61,7 @@ function pick(event) {
 		var owner = getCountry(rgb).tag;
 	}
 
-	var province = getProvince(getDefPixel(x, y));
+	var province = getProvince(getDefPixel(x, y, mapDef));
 
 	return [owner, province];
 }

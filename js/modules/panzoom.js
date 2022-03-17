@@ -1,6 +1,7 @@
 // Source: https://gist.github.com/dzhang123/2a3a611b3d75a45a3f41
+export var mapDef;
 
-export function applyPanZoom(canvas, context, mapInit) {		
+export function applyPanZoom(canvas, context, mapInit, map) {
 	trackTransforms(context);
 
 	function redraw(){
@@ -16,6 +17,11 @@ export function applyPanZoom(canvas, context, mapInit) {
 		context.restore();
 
 		context.imageSmoothingEnabled = false;
+
+		// Scale province.bmp to match the map for color code retrieval
+		context.drawImage(map,0,0,canvas.width,canvas.height);
+		mapDef = context.getImageData(0, 0, canvas.width, canvas.height).data;
+
 		context.drawImage(mapInit,0,0,canvas.width,canvas.height);
 
 	}

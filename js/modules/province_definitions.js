@@ -7,9 +7,9 @@ export function loadProvDef(map, canvas, context) {
 }
 
 var _canvas;
-export function getDefPixel(x, y) {
+export function getDefPixel(x, y, mapDef) {
 	var pixelPos = y * (_canvas.width * 4) + x * 4;
-	var pixelColor = [provDef[pixelPos], provDef[pixelPos + 1], provDef[pixelPos + 2]];
+	var pixelColor = [mapDef[pixelPos], mapDef[pixelPos + 1], mapDef[pixelPos + 2]];
 	return pixelColor;
 }
 
