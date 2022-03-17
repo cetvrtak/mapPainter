@@ -10,13 +10,19 @@ body {
 	position: relative;
 }
 
-#hovered-color {
+#province-map {
+	display: block;
+}
+
+#debug-window {
 	position: absolute;
 	left: 0;
 	bottom: 0;
-	width: 150px;
-	margin-bottom: 0px;
 	background-color: white;
+}
+
+#debug-data {
+	margin-bottom: 0px;
 }
 
 #province-window {

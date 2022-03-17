@@ -6,10 +6,10 @@ window.onload = function() {
 	applyPanZoom(canvas, context, mapInit, map);
 }
 
-var canvas = document.getElementById('provinceMap');
+var canvas = document.getElementById('province-map');
 var context = canvas.getContext('2d');
-context.canvas.width  = window.innerWidth - 1;
-context.canvas.height = window.innerHeight * 0.75;
+canvas.width  = window.innerWidth - 1;
+canvas.height = window.innerHeight * 0.75;
 canvas.zoomRange = [0.99, 100];
 
 var map = new Image();
@@ -68,7 +68,7 @@ function pick(event) {
 canvas.addEventListener('mousemove', function(event) {
 	var [owner, province] = pick(event);
 
-	var hoveredColor = document.getElementById('hovered-color');
+	var hoveredColor = document.getElementById('debug-data');
 	if (province != undefined)
 	{
 		hoveredColor.textContent = province.name;
