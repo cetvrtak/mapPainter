@@ -10,6 +10,7 @@ var canvas = document.getElementById('provinceMap');
 var context = canvas.getContext('2d');
 context.canvas.width  = window.innerWidth - 1;
 context.canvas.height = window.innerHeight * 0.75;
+canvas.zoomRange = [0.99, 100];
 
 var map = new Image();
 map.crossOrigin = 'anonymous';

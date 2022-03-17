@@ -57,11 +57,13 @@ export function applyPanZoom(canvas, context, mapInit, map) {
 	},false);
 
 	var scaleFactor = 1.1;
+	var zoomFactor = 1;
 
 	var zoom = function(clicks){
 		var pt = context.transformedPoint(lastX,lastY);
 		context.translate(pt.x,pt.y);
 		var factor = Math.pow(scaleFactor,clicks);
+		zoomFactor *= factor;
 		context.scale(factor,factor);
 		context.translate(-pt.x,-pt.y);
 		redraw();
@@ -69,6 +71,11 @@ export function applyPanZoom(canvas, context, mapInit, map) {
 
 	var handleScroll = function(evt){
 		var delta = evt.wheelDelta ? evt.wheelDelta/40 : evt.detail ? -evt.detail : 0;
+		var nextZoom = zoomFactor * Math.pow(scaleFactor, delta);
+		if (nextZoom < canvas.zoomRange[0] || nextZoom > canvas.zoomRange[1])
+		{
+			delta = 0; // cancel zoom
+		}
 		if (delta) zoom(delta);
 		return evt.preventDefault() && false;
 	};
