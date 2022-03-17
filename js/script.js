@@ -110,7 +110,7 @@ function cede(provId, tag) {
 	const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 	const data = imageData.data;
 
-	[red, green, blue] = getProvince(provId).color;
+	var [red, green, blue] = getProvince(provId).color;
 	var countryColor = getCountry(tag).color;
 
 	for (var i = 0; i < provDef.length; i += 4) {
@@ -167,3 +167,18 @@ function paintTheMap() {
 	}
 	context.putImageData(imageData, 0, 0);
 }
+
+var cons = document.getElementById("console");
+var consLog = document.getElementById("console-log");
+cons.addEventListener("change", function() {
+	consLog.textContent += cons.value + "\n";
+	let fn = cons.value.split(" ")[0];
+	let args = cons.value.split(" ").slice(1);
+	switch (fn) {
+		case "cede":
+			cede.apply(null, args);
+			break;
+		default:
+			consLog.textContent += "Unknown command\n";
+	}
+});

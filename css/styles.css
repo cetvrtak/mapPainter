@@ -25,6 +25,11 @@ body {
 	margin-bottom: 0px;
 }
 
+#console-log {
+	border-top: 1px solid gray;
+	margin-bottom: 0px;
+}
+
 #province-window {
 	display: none;
 	position: absolute;
