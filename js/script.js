@@ -25,7 +25,6 @@ var mapInit = new Image();
 mapInit.crossOrigin = 'anonymous';
 mapInit.src = 'map/map_initial.png';
 function initializeMap(date) {
-	mapInit.onload = function() {
 		context.imageSmoothingEnabled = false;
 		context.drawImage(mapInit, 0, 0, canvas.width, canvas.height);
 
@@ -47,7 +46,6 @@ function initializeMap(date) {
 			}
 			cede(province.id, province[date]);
 		}
-	}
 }
 
 function pick(event) {
