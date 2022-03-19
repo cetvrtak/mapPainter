@@ -17,7 +17,7 @@ export function getProvince(attr) {
 	return province;
 }
 
-var provinceDefinitions = [
+export var provinceDefinitions = [
 { id: 1, color: [204,229,152], name: "Sitka", "1836.1.1": "RUS" },
 { id: 2, color: [204,179,153], name: "Yakutat", "1836.1.1": "RUS" },
 { id: 3, color: [153,230,153], name: "Kenai", "1836.1.1": "RUS" },

@@ -1,4 +1,4 @@
-import { getDefPixel, getProvince } from './modules/province_definitions.js';
+import { provinceDefinitions, getDefPixel, getProvince } from './modules/province_definitions.js';
 import { getCountry } from './modules/country_definitions.js';
 import { applyPanZoom, mapDef } from './modules/panzoom.js';
 
@@ -35,11 +35,11 @@ function initializeMap(date) {
 
 		for (var province of provinceDefinitions)
 		{
-			console.log(province);
 			if (province.id == 1)
 			{
 				break;
 			}
+			console.log(province);
 			if (province.sea)
 			{
 				continue;
