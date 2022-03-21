@@ -1,9 +1,11 @@
-import { loadProvDef, provDef, getDefPixel, getProvince } from './modules/province_definitions.js';
+import { getDefPixel, getProvince } from './modules/province_definitions.js';
 import { getCountry } from './modules/country_definitions.js';
 import { applyPanZoom, mapDef } from './modules/panzoom.js';
 
+var provDef;
+
 window.onload = function() {
-	applyPanZoom(canvas, context, mapInit, map);
+	//applyPanZoom(canvas, context, mapInit, map);
 }
 
 var canvas = document.getElementById('province-map');
@@ -17,7 +19,6 @@ map.crossOrigin = 'anonymous';
 map.src = 'map/provinces.bmp';
 
 map.onload = function() {
-	loadProvDef(map, canvas, context);
 	initializeMap("1836.1.1");
 }
 
@@ -26,6 +27,10 @@ mapInit.crossOrigin = 'anonymous';
 mapInit.src = 'map/map_initial.png';
 function initializeMap(date) {
 		context.imageSmoothingEnabled = false;
+
+		context.drawImage(map, 0, 0, canvas.width, canvas.height);
+		provDef = context.getImageData(0, 0, canvas.width, canvas.height).data;
+
 		context.drawImage(mapInit, 0, 0, canvas.width, canvas.height);
 
 		for (var province of provinceDefinitions)
@@ -60,7 +65,7 @@ function pick(event) {
 		var owner = getCountry(rgb).tag;
 	}
 
-	var province = getProvince(getDefPixel(x, y, mapDef));
+	var province = getProvince(getDefPixel(x, y, provDef, canvas));
 
 	return [owner, province];
 }

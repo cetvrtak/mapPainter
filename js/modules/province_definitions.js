@@ -1,14 +1,5 @@
-export var provDef;
-export function loadProvDef(map, canvas, context) {
-	_canvas = canvas;
-	context.imageSmoothingEnabled = false;
-	context.drawImage(map, 0, 0, canvas.width, canvas.height);
-	provDef = context.getImageData(0, 0, canvas.width, canvas.height).data;
-}
-
-var _canvas;
-export function getDefPixel(x, y, mapDef) {
-	var pixelPos = y * (_canvas.width * 4) + x * 4;
+export function getDefPixel(x, y, mapDef, canvas) {
+	var pixelPos = y * (canvas.width * 4) + x * 4;
 	var pixelColor = [mapDef[pixelPos], mapDef[pixelPos + 1], mapDef[pixelPos + 2]];
 	return pixelColor;
 }
