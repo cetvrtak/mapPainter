@@ -12,6 +12,7 @@ body {
 
 #province-map {
 	display: block;
+	width: 100%;
 }
 
 #debug-window {
