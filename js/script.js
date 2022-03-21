@@ -115,7 +115,13 @@ function cede(provId, tag) {
 	const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
 	const data = imageData.data;
 
-	var [red, green, blue] = getProvince(provId).color;
+	var province = getProvince(provId);
+	if (province.sea)
+	{
+		return;
+	}
+
+	var [red, green, blue] = province.color;
 	var countryColor = getCountry(tag).color;
 
 	for (var i = 0; i < provDef.length; i += 4) {
